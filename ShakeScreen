@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ShakeScreen : MonoBehaviour
+{
+    public float duration = 0.5f;
+    public float shakeAmount = 40f;
+
+    Vector3 originalState;
+
+	public void StartShake()
+    {
+        originalState = transform.localPosition;
+        StartCoroutine(Shake(duration));
+        Invoke("ToOriginalState", duration);
+    }
+
+    private IEnumerator Shake(float duration)
+    {
+        float time = 0f;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            transform.localPosition = originalState + Random.insideUnitSphere * shakeAmount;
+
+            yield return null;
+        }
+    }
+
+    private void ToOriginalState()
+    {
+        transform.localPosition = originalState;
+    }
+
+}
