@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GetScore : MonoBehaviour
+{
+
+    public float duration;
+
+    public void StartScaleScore()
+    {
+        StartCoroutine(ScaleScore(duration));
+    }
+
+    private IEnumerator ScaleScore(float duration)
+    {
+        float time = 0f;
+        int originalFontSize = GetComponent<Text>().fontSize;
+        while (time < 1f)
+        {
+            time += (Time.deltaTime / duration);
+            GetComponent<Text>().fontSize = Mathf.Clamp((int)(120 - ((120 - originalFontSize) * time)), originalFontSize, 120);
+            yield return null;
+        }   
+    }
+	
+}
