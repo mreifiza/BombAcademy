@@ -1,0 +1,23 @@
+public override void OnDisconnectedFromPhoton()
+{
+    CloseConnectingAnimation();
+    BackToRoomMain();
+}
+
+public override void OnConnectionFail(DisconnectCause cause)
+{
+    CloseConnectingAnimation();
+    BackToRoomMain();
+}
+
+public override void OnFailedToConnectToPhoton(DisconnectCause cause)
+{
+    CloseConnectingAnimation();
+    BackToRoomMain();
+}
+
+public override void OnPhotonCreateRoomFailed(object[] codeAndMsg)
+{
+    CloseConnectingAnimation();
+    BackToRoomMain();
+}
